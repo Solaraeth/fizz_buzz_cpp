@@ -6,10 +6,26 @@ int main() {
 
 int i = 0;
 
-// Ask the user to pick a number which is assigned to variable i
+bool validInput = false;
 
-std::cout << "Pick a number: ";
-std::cin >> i;
+    // Validate the user input
+    while (!validInput) {
+        // Ask the user to pick a number which is assigned to variable i
+        std::cout << "Pick a number: ";
+        std::string input;
+        std::cin >> input;
+
+        // Try to convert the input string to an integer
+        try {
+            i = std::stoi(input);
+            validInput = true;
+        }     
+
+        // Catch exceptions and give the user a retry prompt
+        catch (const std::exception& e) {
+            std::cout << "Invalid input. Please enter a valid integer.\n";
+        }
+    }
 
 /* Print numbers upto user chosen number substituting:
 - fizz for multiples of 3 
